@@ -1,0 +1,40 @@
+/* body */
+body {
+  margin: 10px;
+}
+
+/* header*/
+header {
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+}
+#logo {
+  width: 210px;
+  height: 159px;
+  margin: 10px;
+}
+
+header h2 {
+  align-self: center;
+  font-size: 50px;
+  font-weight: bold;
+}
+
+/* general*/
+main h2 {
+  text-align: center;
+}
+table {
+  text-align: center;
+  margin: 10px;
+}
+#more {
+  display: none;
+}
+
+/* footer*/
+
+footer {
+  margin: 10px;
+}
