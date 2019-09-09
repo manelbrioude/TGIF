@@ -1,27 +1,30 @@
-// var members = data_house.results[0].members;
+// var members = data_senate.results[0].members;
 
 let members;
 
-fetch("https://api.propublica.org/congress/v1/113/house/members.json", {
+fetch("https://api.propublica.org/congress/v1/113/senate/members.json", {
   method: "GET",
   headers: {
     "X-API-Key": "23GbzkahRNlVD6hWwI4xSr6qjCawOxflUjePfRzx"
   }
 })
   .then(function(response) {
+    console.log(response);
     return response.json();
   })
-  .then(function(finalresponse) {
-    members = finalresponse.results[0].members;
+  .then(function(patata) {
+    console.log(patata);
+    members = patata.results[0].members;
 
     printTable(members);
-    dropDownMenu("house", members);
+    dropDownMenu("senate", members);
   })
   .catch(function(jamon) {});
 
 function printTable(array) {
+  var table = document.getElementById("senate");
+  console.log(array);
   i = 0;
-  var table = document.getElementById("house");
   while (i < array.length) {
     if (array[i].middle_name === null) {
       fullname = array[i].first_name + " " + array[i].last_name;
@@ -50,38 +53,35 @@ function printTable(array) {
   document.getElementById("loader").style.display = "none";
 }
 
-document
-  .getElementById("dhcheckbox customSwitches")
-  .addEventListener("click", function() {
-    showfilters("house");
-  });
-document
-  .getElementById("rhcheckbox customSwitches")
-  .addEventListener("click", function() {
-    showfilters("house");
-  });
-document
-  .getElementById("ihcheckbox customSwitches")
-  .addEventListener("click", function() {
-    showfilters("house");
-  });
+// checkboxes
+
+document.getElementById("dscheckbox").addEventListener("click", function() {
+  showfilters("senate");
+});
+document.getElementById("rscheckbox").addEventListener("click", function() {
+  showfilters("senate");
+});
+document.getElementById("ischeckbox").addEventListener("click", function() {
+  showfilters("senate");
+});
 document.getElementById("filter").addEventListener("change", function() {
-  showfilters("house");
+  showfilters("senate");
 });
 
 function showfilters(id) {
-  dchecked = document.getElementById("dhcheckbox customSwitches").checked;
-  rchecked = document.getElementById("rhcheckbox customSwitches").checked;
-  ichecked = document.getElementById("ihcheckbox customSwitches").checked;
-  // var message = document.getElementById("resultsMessage");
+  dchecked = document.getElementById("dscheckbox").checked;
+  rchecked = document.getElementById("rscheckbox").checked;
+  ichecked = document.getElementById("ischeckbox").checked;
   table = document.getElementById(id);
   rows = table.getElementsByTagName("tr");
+  var noresults = false;
+  console.log(rows);
   for (i = 0; i < rows.length - 1; i++) {
-    var noresults = false;
     var whichstate = document.getElementById("filter").value;
     var states = rows[i].getElementsByTagName("td")[2].innerHTML;
     var whatparties = rows[i].getElementsByTagName("td")[1].innerText;
     rows[i].style.display = "none";
+
     if (
       dchecked == false &&
       rchecked == false &&
@@ -121,8 +121,8 @@ function showfilters(id) {
       rows[i].style.display = "";
       noresults = true;
     }
+    console.log(noresults);
   }
-  console.log(noresults);
   if (noresults == false) {
     document.getElementById("resultsMessage").style.display = "block";
   } else if (noresults == true) {
@@ -133,7 +133,7 @@ function showfilters(id) {
 // dropdownmenu
 
 function dropDownMenu(id, members) {
-  let statearray = [];
+  let statearray = ["ALL"];
   for (let i = 0; i < members.length; i++) {
     let newstate = true;
     var states = members[i].state;
@@ -149,6 +149,8 @@ function dropDownMenu(id, members) {
   }
   statearray.sort();
   statearray.unshift("ALL");
+  select = document.getElementById("filter");
+
   select = document.getElementById("filter");
 
   for (state in statearray) {

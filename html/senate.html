@@ -14,30 +14,19 @@
     <!--header-->
     <header>
       <img
-        src="../images/logo.PNG"
+        src="../images/logo4.PNG"
         class="rounded-circle"
         alt="log"
         id="logo"
       />
       <h2>Transparent Government In Fact</h2>
+      <a href="mailto: info@tgif.net">info@tgif.net</a>
     </header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
+    <nav class="navbar navbar-expand-sm navbar-light bg-light">
+      <div class="collapse navbar-collapse " id="navbarSupportedContent">
+        <ul class="navbar-nav mx-auto w-100 d-flex justify-content-around ">
           <li class="nav-item active">
-            <a class="nav-link" href="home-starter-page.html"
+            <a class="nav-link" href="home.html"
               >Home <span class="sr-only">(current)</span></a
             >
           </li>
@@ -55,10 +44,44 @@
               Congress 113
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="./house-starter-page.html"
+              <a class="dropdown-item" href="house.html">House</a>
+              <a class="dropdown-item" href="senate.html">Senate</a>
+            </div>
+          </li>
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="navbarDropdown"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              Attendance
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="house_attendance.html">House</a>
+              <a class="dropdown-item" href="senate_attendance.html">Senate</a>
+            </div>
+          </li>
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="navbarDropdown"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              Party Loyalty
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="./house_party_loyalty.html"
                 >House</a
               >
-              <a class="dropdown-item" href="senate-starter-page.html"
+              <a class="dropdown-item" href="senate_party_loyalty.html"
                 >Senate</a
               >
             </div>
@@ -66,8 +89,6 @@
         </ul>
       </div>
     </nav>
-
-    <div></div>
 
     <!--Table container-->
     <main>
@@ -85,30 +106,62 @@
           ambassadors, and other federal uniformed officers, as well as trial of
           federal officials impeached by the House.
         </p>
-        <table class="table table-striped">
+        <p>Filter for parties:</p>
+        <input
+          type="checkbox"
+          name="filtercheckboxes"
+          id="dscheckbox"
+        />Democrats
+        <input
+          type="checkbox"
+          name="filtercheckboxes"
+          id="rscheckbox"
+        />Republicans
+        <input
+          type="checkbox"
+          name="filtercheckboxes"
+          id="ischeckbox"
+        />Independents
+
+        <table class="table">
           <thead>
             <tr>
               <th>Full name</th>
               <th>Party</th>
-              <th>State</th>
+              <th>
+                State
+                <select id="filter"></select>
+              </th>
               <th>Seniority</th>
               <th>Total votes</th>
             </tr>
           </thead>
-          <tbody id="senate"></tbody>
+          <tbody id="senate">
+            <tr id="loader">
+              <td colspan="5">
+                <div class="lds-ring">
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
         </table>
+        <div id="resultsMessage">THERE ARE NO RESULTS FOR YOUR SEARCH</div>
       </div>
     </main>
 
     <!--footer-->
-    <footer id="sticky-footer" class="py-4 bg-dark text-white-50">
+    <footer id="sticky-footer" class="py-4 bg-dark text-white-50 col-lg-12">
       <div class="container text-center">
         <small>&copy;2016 TGIF | All Rights Reserved</small>
       </div>
     </footer>
 
     <script src="../js/senate.js"></script>
-    <script src="../js/main.js"></script>
+    <script src="../js/mainsenate.js"></script>
     <script
       src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
       integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
